@@ -1,0 +1,40 @@
+{
+  "name": "sf-einstein",
+  "version": "0.0.1",
+  "description": "Salesforce Einstein API",
+  "engines": {
+    "node": "12.x"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "node-fetch": "^2.6.0",
+    "dotenv": "^8.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2",
+    "request": "^2.88.0",
+    "tape": "^4.13.0",
+    "node-forge": "^0.9.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hsaraujo/sf-einstein.git"
+  },
+  "keywords": [
+    "salesforce",
+    "einstein",
+    "predict"
+  ],
+  "author": "Heitor Araujo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hsaraujo/sf-einstein/issues"
+  },
+  "homepage": "https://github.com/hsaraujo/sf-einstein#readme"
+}
