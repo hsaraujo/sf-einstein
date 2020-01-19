@@ -11,7 +11,7 @@
     "test": "node test.js"
   },
   "publishConfig": {
-      "registry" : "https://npm.pkg.github.com/hsaraujo"
+      "registry" : "https://npm.pkg.github.com/@hsaraujo"
   },
   "dependencies": {
     "express": "^4.17.1",
