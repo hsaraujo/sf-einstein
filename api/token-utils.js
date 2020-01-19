@@ -6,6 +6,9 @@ let expiration = null;
 let accessToken = null;
 const getAccessToken = async (accountId, privateKey) => {
 
+  if(!accountId || !privateKey){
+    throw new Error('please provice accountId AND privateKey');
+  }
   const halfLife = (Date.now() / 1000) + LIFE / 2;
   if (
     expiration !== null &&
