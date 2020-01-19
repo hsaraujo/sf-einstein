@@ -1,5 +1,6 @@
 const tokenUtils = require('./api/token-utils');
 const options = require('./utils/options');
+const datasets = require('./api/datasets');
 
 function getToken(){
 
@@ -11,5 +12,10 @@ function getToken(){
 module.exports.getToken = getToken;
 module.exports.setup = (options) => {
     require('./utils/options').setup(options);
+};
+module.exports.getDatasets = async () => {
+    return await datasets.getAll();
 }
-    
+module.exports.getDataset = async (datasetId) => {
+    return await datasets.get(datasetId);
+}
