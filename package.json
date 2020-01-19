@@ -1,6 +1,6 @@
 {
   "name": "sf-einstein",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "Salesforce Einstein API",
   "engines": {
     "node": "12.x"
@@ -9,6 +9,9 @@
   "scripts": {
     "start": "node index.js",
     "test": "node test.js"
+  },
+  "publishConfig": {
+      "registry" : "https://npm.pkg.github.com/"
   },
   "dependencies": {
     "express": "^4.17.1",

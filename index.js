@@ -2,6 +2,7 @@ const tokenUtils = require('./api/token-utils');
 const options = require('./utils/options');
 const datasets = require('./api/datasets');
 const training = require('./api/training');
+const prediction = require('./api/prediction');
 
 function getToken(){
 
@@ -23,6 +24,10 @@ module.exports.getDataset = async (datasetId) => {
 module.exports.getTrainingStatus = async (modelId) => {
     return await training.getStatus(modelId);
 };
-module.exports.trainDataSet = async (name, datasetId) => {
+module.exports.trainDataset = async (name, datasetId) => {
     return await training.trainDataset(name, datasetId);
 }
+
+module.exports.predictByUrl = prediction.predictByUrl;
+module.exports.predictByImageB64 = prediction.predictByImageB64;
+module.exports.predictByImageFile = prediction.predictByImageFile;
