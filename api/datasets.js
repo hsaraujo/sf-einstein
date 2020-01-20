@@ -2,22 +2,29 @@ const fetch = require('node-fetch');
 const options = require('../utils/options');
 const tokenUtils = require('./token-utils');
 
-async function getAll() {
+function getAll() {
 
-    var token = await tokenUtils.getAccessToken(options.options.accountId, options.options.privateKey);
+    return tokenUtils.getAccessToken(options.options.accountId, options.options.privateKey)
+    .then((token) => {
 
-    const response = await fetch(options.options.baseUrl + '/v2/vision/datasets', {
-        method: 'GET',
-        headers: {
-            'Authorization' : 'Bearer ' + token
+        console.log('got token');
+        return fetch(options.options.baseUrl + '/v2/vision/datasets', {
+            method: 'GET',
+            headers: {
+                'Authorization' : 'Bearer ' + token
+            }
+        });
+    })
+    .then((response) => {
+
+        console.log('resp');
+        console.log(response.ok);
+
+        if (!response.ok) {
+            throw new Error(response.statusText);
         }
-        
+        return response.json();
     });
-    if (!response.ok) {
-        throw new Error(response.statusText);
-    }
-
-    return response.json();
 }
 
 async function get(datasetId) {
