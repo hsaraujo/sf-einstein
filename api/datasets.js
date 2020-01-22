@@ -82,7 +82,51 @@ function createDataset(form){
     });
 }
 
+function deleteDataset(id){
+
+    return tokenUtils.getAccessToken(options.options.accountId, options.options.privateKey)
+    .then((token) => {
+
+        return fetch(options.options.baseUrl + '/v2/vision/datasets/' + id, {
+            method: 'DELETE',
+            headers: {
+                'Authorization' : 'Bearer ' + token
+            }
+        });
+    })
+    .then((response) => {
+
+        if (!response.ok) {
+            throw new Error(response.statusText);
+        }
+        return response.json();
+    });
+}
+
+function getDeletionStatus(deletionId){
+
+    return tokenUtils.getAccessToken(options.options.accountId, options.options.privateKey)
+    .then((token) => {
+
+        return fetch(options.options.baseUrl + '/v2/vision/datasets/deletion/' + deletionId, {
+            method: 'GET',
+            headers: {
+                'Authorization' : 'Bearer ' + token
+            }
+        });
+    })
+    .then((response) => {
+
+        if (!response.ok) {
+            throw new Error(response.statusText);
+        }
+        return response.json();
+    });
+}
+
 exports.getAll = getAll;
 exports.get = get;
 exports.createFromUrl = createFromUrl;
 exports.createFromZipFile = createFromZipFile;
+exports.deleteDataset = deleteDataset;
+exports.getDeletionStatus = getDeletionStatus;

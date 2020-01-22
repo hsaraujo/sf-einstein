@@ -65,6 +65,24 @@ Retrieves a specific Dataset
 		console.log(dataset.name);
 	});
 
+## Delete a Dataset - [Documentation](https://metamind.readme.io/docs/delete-a-dataset)
+
+Deletes a specific Dataset
+
+	sf.deleteDataset('123456')
+	.then((deletion) => {
+		console.log(deletion.id);
+	});
+
+## Get Deletion Status - [Documentation](https://metamind.readme.io/docs/get-vision-deletion-status)
+
+Retrieves status of a Dataset deletion
+
+	sf.getDatasetDeletionStatus('Z2JTFBF3A7XKIJC5QEJXMO4HSY')
+	.then((deletion) => {
+		console.log(deletion.status);
+	});
+
 # Training
 
 ## Get Training Status - [Documentation](https://metamind.readme.io/docs/get-training-status)
