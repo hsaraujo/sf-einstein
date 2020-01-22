@@ -50,7 +50,7 @@ Asynchronously creates a dataset based either on an URL or a .zip file
 
 Retrieves all Datasets created for current account
 
-    sf.getDatasets()
+    sfEinstein.getDatasets()
     .then((response) => {
         var datasets = response.data;
         datasets.forEach(dataset => console.log(dataset.name));
@@ -60,7 +60,7 @@ Retrieves all Datasets created for current account
 
 Retrieves a specific Dataset
 
-    sf.getDataset('123456')
+    sfEinstein.getDataset('123456')
     .then((dataset) => {
         console.log(dataset.name);
     });
@@ -69,7 +69,7 @@ Retrieves a specific Dataset
 
 Deletes a specific Dataset
 
-    sf.deleteDataset('123456')
+    sfEinstein.deleteDataset('123456')
     .then((deletion) => {
         console.log(deletion.id);
     });
@@ -78,7 +78,7 @@ Deletes a specific Dataset
 
 Retrieves status of a Dataset deletion
 
-    sf.getDatasetDeletionStatus('Z2JTFBF3A7XKIJC5QEJXMO4HSY')
+    sfEinstein.getDatasetDeletionStatus('Z2JTFBF3A7XKIJC5QEJXMO4HSY')
     .then((deletion) => {
         console.log(deletion.status);
     });
@@ -88,7 +88,7 @@ Retrieves status of a Dataset deletion
 ## Get Training Status - [Documentation](https://metamind.readme.io/docs/get-training-status)
 Returns the status of a model's training process
 
-    sf.getTrainingStatus('X6FKINOA2K33JSCN63RO6J3SQM')
+    sfEinstein.getTrainingStatus('X6FKINOA2K33JSCN63RO6J3SQM')
     .then((training) => {
         console.log(training.status);
     });
@@ -97,18 +97,27 @@ Returns the status of a model's training process
 
 Trains a dataset and creates a model
 
-    sf.trainDataset('Name', '123456')
+    sfEinstein.trainDataset('Name', '123456')
     .then((training) => {
         console.log(training.modelId);
     });
 
+
+## Retrain a Dataset - [Documentation](https://metamind.readme.io/docs/retrain-a-dataset)
+
+Retrains a dataset and updates a model
+
+    sfEinstein.trainDataset('7JXCXTRXTMNLJCEF2DR5CJ46QU')
+    .then((training) => {
+        console.log(training.status);
+    });
 
 # Predictions
 ## Predict by URL - [Documentation](https://metamind.readme.io/docs/prediction-with-image-url)
 
 Retrieves a prediction from a model for the image on the url passed
 
-    sf.predictByUrl('123456', 'https://www.path.to/image.jpg')
+    sfEinstein.predictByUrl('123456', 'https://www.path.to/image.jpg')
     .then((prediction) => {
         prediction.probabilities.forEach((prob) => {
             console.log(prob.label + ' : ' + prob.probability);
@@ -119,7 +128,7 @@ Retrieves a prediction from a model for the image on the url passed
 
 Retrieves a prediction from a model for the image decoded into Base64 String
 
-    sf.predictByImageBase64('123456', 'data:image/jpeg;base64,/9j/4RiDRXhpZgAATU0AKgA')
+    sfEinstein.predictByImageBase64('123456', 'data:image/jpeg;base64,/9j/4RiDRXhpZgAATU0AKgA')
     .then((prediction) => {
         prediction.probabilities.forEach((prob) => {
             console.log(prob.label + ' : ' + prob.probability);
@@ -133,7 +142,7 @@ Retrieves a prediction from a model for the image file
     var fs = require('fs');
     
     var myImage = fs.createReadStream('/foo/bar.jpg');
-    sf.predictByImageBase64('123456', myImage)
+    sfEinstein.predictByImageBase64('123456', myImage)
     .then((prediction) => {
         prediction.probabilities.forEach((prob) => {
             console.log(prob.label + ' : ' + prob.probability);

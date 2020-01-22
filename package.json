@@ -1,6 +1,6 @@
 {
   "name": "sf-einstein",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Salesforce Einstein API",
   "engines": {
     "node": "13.x"

@@ -44,6 +44,32 @@ async function trainDataset(name, datasetId) {
     return response.json();
 }
 
+function retrainDataset(modelId){
+
+    const form = new FormData();
+    form.append('modelId', modelId);
+
+    return tokenUtils.getAccessToken(options.options.accountId, options.options.privateKey)
+    .then((token) => {
+
+        return fetch(options.options.baseUrl + '/v2/vision/retrain', {
+            method: 'GET',
+            headers: {
+                'Authorization' : 'Bearer ' + token
+            },
+            body: form
+        });
+    })
+    .then((response) => {
+
+        if (!response.ok) {
+            throw new Error(response.statusText);
+        }
+        return response.json();
+    });
+}
+
 module.exports.getStatus = getStatus;
 module.exports.trainDataset = trainDataset;
+module.exports.retrainDataset = retrainDataset;
 

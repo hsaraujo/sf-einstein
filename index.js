@@ -20,6 +20,7 @@ module.exports.deleteDataset = datasets.deleteDataset;
 module.exports.getDatasetDeletionStatus = datasets.getDatasetDeletionStatus;
 module.exports.getTrainingStatus = training.getStatus;
 module.exports.trainDataset = training.trainDataset;
+module.exports.retrainDataset = training.retrainDataset;
 module.exports.predictByUrl = prediction.predictByUrl;
 module.exports.predictByImageB64 = prediction.predictByImageB64;
 module.exports.predictByImageFile = prediction.predictByImageFile;
