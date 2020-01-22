@@ -1,9 +1,9 @@
 {
   "name": "sf-einstein",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "description": "Salesforce Einstein API",
   "engines": {
-    "node": "12.x"
+    "node": "13.x"
   },
   "main": "index.js",
   "scripts": {

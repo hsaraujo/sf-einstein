@@ -7,7 +7,6 @@ function getAll() {
     return tokenUtils.getAccessToken(options.options.accountId, options.options.privateKey)
     .then((token) => {
 
-        console.log('got token');
         return fetch(options.options.baseUrl + '/v2/vision/datasets', {
             method: 'GET',
             headers: {
@@ -16,9 +15,6 @@ function getAll() {
         });
     })
     .then((response) => {
-
-        console.log('resp');
-        console.log(response.ok);
 
         if (!response.ok) {
             throw new Error(response.statusText);
@@ -45,5 +41,48 @@ async function get(datasetId) {
     return response.json();
 }
 
+function createFromZipFile(name, type, data){
+    const form = new FormData();
+    form.append('name', name);
+    form.append('type', type);
+    form.append('data', data);
+
+    return createDataset(form);
+
+}
+
+function createFromUrl(name, type, url){
+    const form = new FormData();
+    form.append('name', name);
+    form.append('type', type);
+    form.append('path', url);
+
+    return createDataset(form);
+}
+
+function createDataset(form){
+
+    return tokenUtils.getAccessToken(options.options.accountId, options.options.privateKey)
+    .then((token) => {
+
+        return fetch(options.options.baseUrl + '/v2/vision/datasets', {
+            method: 'POST',
+            headers: {
+                'Authorization' : 'Bearer ' + token
+            },
+            body: form
+        });
+    })
+    .then((response) => {
+
+        if (!response.ok) {
+            throw new Error(response.statusText);
+        }
+        return response.json();
+    });
+}
+
 exports.getAll = getAll;
 exports.get = get;
+exports.createFromUrl = createFromUrl;
+exports.createFromZipFile = createFromZipFile;

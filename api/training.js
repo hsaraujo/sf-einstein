@@ -27,7 +27,7 @@ async function trainDataset(name, datasetId) {
 
     const form = new FormData();
     form.append('name', name);
-    form.append('datasetId', datasetId)
+    form.append('datasetId', datasetId);
 
     const response = await fetch(options.options.baseUrl + '/v2/vision/train/', {
         method: 'POST',
