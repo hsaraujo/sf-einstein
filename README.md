@@ -9,9 +9,9 @@ Javascript library for consuming Salesforce Einstein API as per [Documentation](
     var sfEinstein = require('sf-einstein');
     
     sfEinstein.setup({
-	    baseUrl :  'https://api.einstein.ai',
-	    accountId :  <your_account_id>,
-	    privateKey :  <your_private_key>
+        baseUrl :  'https://api.einstein.ai',
+        accountId :  <your_account_id>,
+        privateKey :  <your_private_key>
     });
 
 ## Get Token - [Documentation](https://metamind.readme.io/docs/generate-an-oauth-access-token)
@@ -19,7 +19,7 @@ Javascript library for consuming Salesforce Einstein API as per [Documentation](
 Generates a new token based on the details set in the **Setup** step
 
     sfEinstein.getToken().then((token) => {
-	    console.log(token);
+        console.log(token);
     });
     
 # Datasets
@@ -33,7 +33,7 @@ Asynchronously creates a dataset based either on an URL or a .zip file
 
     sfEinstein.createDatasetFromUrl('My Dataset', 'image', 'https://www.path.to/my_file.zip')
     .then((response) => {
-	    console.log(response.id);
+        console.log(response.id);
     });
 
 ### Create a Dataset from .zip file
@@ -42,7 +42,7 @@ Asynchronously creates a dataset based either on an URL or a .zip file
     var myDatasetFile = fs.createReadStream('/foo/dataset.zip');
     sfEinstein.createDatasetFromZipFile('My Dataset', 'image', myDatasetFile)
     .then((response) => {
-	    console.log(response.id);
+        console.log(response.id);
     });
     
 
@@ -50,38 +50,38 @@ Asynchronously creates a dataset based either on an URL or a .zip file
 
 Retrieves all Datasets created for current account
 
-	sf.getDatasets()
-	.then((response) => {
-		var datasets = response.data;
-		datasets.forEach(dataset => console.log(dataset.name));
-	});
+    sf.getDatasets()
+    .then((response) => {
+        var datasets = response.data;
+        datasets.forEach(dataset => console.log(dataset.name));
+    });
 
 ## Get a Dataset - [Documentation](https://metamind.readme.io/docs/get-a-dataset)
 
 Retrieves a specific Dataset
 
-	sf.getDataset('123456')
-	.then((dataset) => {
-		console.log(dataset.name);
-	});
+    sf.getDataset('123456')
+    .then((dataset) => {
+        console.log(dataset.name);
+    });
 
 ## Delete a Dataset - [Documentation](https://metamind.readme.io/docs/delete-a-dataset)
 
 Deletes a specific Dataset
 
-	sf.deleteDataset('123456')
-	.then((deletion) => {
-		console.log(deletion.id);
-	});
+    sf.deleteDataset('123456')
+    .then((deletion) => {
+        console.log(deletion.id);
+    });
 
 ## Get Deletion Status - [Documentation](https://metamind.readme.io/docs/get-vision-deletion-status)
 
 Retrieves status of a Dataset deletion
 
-	sf.getDatasetDeletionStatus('Z2JTFBF3A7XKIJC5QEJXMO4HSY')
-	.then((deletion) => {
-		console.log(deletion.status);
-	});
+    sf.getDatasetDeletionStatus('Z2JTFBF3A7XKIJC5QEJXMO4HSY')
+    .then((deletion) => {
+        console.log(deletion.status);
+    });
 
 # Training
 
@@ -90,7 +90,7 @@ Returns the status of a model's training process
 
     sf.getTrainingStatus('X6FKINOA2K33JSCN63RO6J3SQM')
     .then((training) => {
-	    console.log(training.status);
+        console.log(training.status);
     });
 
 ## Train a Dataset - [Documentation](https://metamind.readme.io/docs/train-a-dataset)
@@ -99,7 +99,7 @@ Trains a dataset and creates a model
 
     sf.trainDataset('Name', '123456')
     .then((training) => {
-	    console.log(training.modelId);
+        console.log(training.modelId);
     });
 
 
@@ -108,34 +108,34 @@ Trains a dataset and creates a model
 
 Retrieves a prediction from a model for the image on the url passed
 
-	sf.predictByUrl('123456', 'https://www.path.to/image.jpg')
-	.then((prediction) => {
-		prediction.probabilities.forEach((prob) => {
-			console.log(prob.label + ' : ' + prob.probability);
-		});
-	});
+    sf.predictByUrl('123456', 'https://www.path.to/image.jpg')
+    .then((prediction) => {
+        prediction.probabilities.forEach((prob) => {
+            console.log(prob.label + ' : ' + prob.probability);
+        });
+    });
 
 ## Predict by Base64 String - [Documentation](https://metamind.readme.io/docs/prediction-with-image-base64-string)
 
 Retrieves a prediction from a model for the image decoded into Base64 String
 
-	sf.predictByImageBase64('123456', 'data:image/jpeg;base64,/9j/4RiDRXhpZgAATU0AKgA')
-	.then((prediction) => {
-		prediction.probabilities.forEach((prob) => {
-			console.log(prob.label + ' : ' + prob.probability);
-		});
-	});
+    sf.predictByImageBase64('123456', 'data:image/jpeg;base64,/9j/4RiDRXhpZgAATU0AKgA')
+    .then((prediction) => {
+        prediction.probabilities.forEach((prob) => {
+            console.log(prob.label + ' : ' + prob.probability);
+        });
+    });
 
 ## Predict by Image File - [Documentation](https://metamind.readme.io/docs/prediction-with-image-file)
 
 Retrieves a prediction from a model for the image file
 
-	var fs = require('fs');
+    var fs = require('fs');
     
     var myImage = fs.createReadStream('/foo/bar.jpg');
-	sf.predictByImageBase64('123456', myImage)
-	.then((prediction) => {
-		prediction.probabilities.forEach((prob) => {
-			console.log(prob.label + ' : ' + prob.probability);
-		});
-	});
+    sf.predictByImageBase64('123456', myImage)
+    .then((prediction) => {
+        prediction.probabilities.forEach((prob) => {
+            console.log(prob.label + ' : ' + prob.probability);
+        });
+    });
