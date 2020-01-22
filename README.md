@@ -107,9 +107,9 @@ Trains a dataset and creates a model
 
 Retrains a dataset and updates a model
 
-    sfEinstein.trainDataset('7JXCXTRXTMNLJCEF2DR5CJ46QU')
-    .then((training) => {
-        console.log(training.status);
+    sfEinstein.retrainDataset('7JXCXTRXTMNLJCEF2DR5CJ46QU')
+    .then((retraining) => {
+        console.log(retraining.status);
     });
 
 # Predictions
